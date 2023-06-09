@@ -171,3 +171,9 @@ lecturer_2.courses_attached = ['Java', 'Kotlin']
 student_1.rate_lecturer(lecturer_1, 'Python', 8)
 student_2.rate_lecturer(lecturer_1, 'Python', 9)
 student_3.rate_lecturer(lecturer_1, 'Python', 6)
+student_2.rate_lecturer(lecturer_2, 'Java', 9)
+student_3.rate_lecturer(lecturer_2, 'Kotlin', 10)
+
+print(lecturer_1)
+print('-----')
+print(lecturer_2)
