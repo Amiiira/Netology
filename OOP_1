@@ -97,6 +97,39 @@ class Reviewer(Mentor):
         result = f'Имя: {self.name}\nФамилия: {self.surname}'
         return result
 
+# Функция для подсчета средней оценки за домашние задания по всем студентам в рамках конкретного курса
+def calculate_average_grade(students, course):
+    total_grades = 0
+    total_students = 0
+
+    for student in students:
+        if course in student.grades:
+            grades = student.grades[course]
+            total_grades += sum(grades)
+            total_students += len(grades)
+
+    if total_students > 0:
+        average_grade = total_grades / total_students
+        return average_grade
+    else:
+        return 0
+
+# Функция для посчета средней оценки за лекции всех лекторов в рамках курса
+def calculate_average_lecture_rating(lecturers, course):
+    total_ratings = 0
+    total_lecturers = 0
+
+    for lecturer in lecturers:
+        if course in lecturer.rates:
+            ratings = lecturer.rates[course]
+            total_ratings += sum(ratings)
+            total_lecturers += len(ratings)
+
+    if total_lecturers > 0:
+        average_rating = total_ratings / total_lecturers
+        return average_rating
+    else:
+        return 0
 
 # best_student = Student('Ruoy', 'Eman', 'your_gender')
 # best_student.courses_in_progress += ['Python']
@@ -177,3 +210,8 @@ student_3.rate_lecturer(lecturer_2, 'Kotlin', 10)
 print(lecturer_1)
 print('-----')
 print(lecturer_2)
+students = [student_1, student_2, student_3]  
+course_name = "Python"  
+
+average_grade = calculate_average_grade(students, course_name)
+print(f"The average grade for {course_name} is: {average_grade}")
