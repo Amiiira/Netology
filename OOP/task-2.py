@@ -17,7 +17,7 @@ with open('recipes.txt', 'rt', encoding='utf-8') as file:
             ingredients.append(ingredient)
         file.readline()
         cook_book[dish_name] = ingredients
-# pprint(cook_book,sort_dicts=False)
+pprint(cook_book,sort_dicts=False)
 
 
 def get_shop_list_by_dishes(dishes, person_count):
@@ -44,7 +44,6 @@ with open('1.txt', 'rt', encoding='utf-8') as file:
     content_1 = file.readlines()
     sum_1 = len(content_1)
     sum_text[sum_1] = content_1
-    print(sum_1)
 
 with open('2.txt', 'rt', encoding='utf-8') as file:
     content_2 = file.readlines()
@@ -57,11 +56,9 @@ with open('3.txt', 'rt', encoding='utf-8') as file:
     sum_text[sum_3] = content_3
 
 sums = [sum_1, sum_2, sum_3]
-print(sums)
 
 with open('final.txt', 'wt', encoding='utf-8') as file:
     sums.sort()
-    print(sums)
     for i in range(len(sums)):
         file.write(f'{i+1}.txt\n')
         file.write(f'{sums[i]}\n')
