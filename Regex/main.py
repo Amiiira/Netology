@@ -1,7 +1,7 @@
-from pprint import pprint
+import ast
 import csv
 import re
-import ast
+from pprint import pprint
 
 with open("Regex/phonebook_raw.csv", encoding="utf-8") as f:
     rows = csv.reader(f, delimiter=",")
@@ -20,7 +20,7 @@ for contact in contacts_list:
     if len(fullname) == 3:
         surname = fullname[2]
 
-    if len(firstname.split()) > 1 :
+    if len(firstname.split()) > 1:
         first_sur = firstname.split()
         firstname = " ".join(first_sur[0].split())
         surname = " ".join(first_sur[1].split())
@@ -29,9 +29,11 @@ for contact in contacts_list:
     contact[1] = firstname
     contact[2] = surname
 
-pattern = re.compile(r"(\+7|8)[\s]?\(?(\d{3})\)?[\s-]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})([\s]?\(?(доб.)[\s](\d{4})\)?)?")
-subst_pattern= r"+7(\2)\3-\4-\5 \7\8"
-result = pattern.sub(subst_pattern,str(contacts_list))
+pattern = re.compile(
+    r"(\+7|8)[\s]?\(?(\d{3})\)?[\s-]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})([\s]?\(?(доб.)[\s](\d{4})\)?)?"
+)
+subst_pattern = r"+7(\2)\3-\4-\5 \7\8"
+result = pattern.sub(subst_pattern, str(contacts_list))
 
 data_list = ast.literal_eval(result)
 merged_data = {}
@@ -49,5 +51,5 @@ merged_data = list(merged_data.values())
 
 
 with open("Regex/phonebook.csv", "w", encoding="utf-8") as f:
-    datawiter = csv.writer(f, delimiter=',')
-    datawiter.writerows(merged_data) 
+    datawiter = csv.writer(f, delimiter=",")
+    datawiter.writerows(merged_data)
