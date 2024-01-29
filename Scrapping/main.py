@@ -21,7 +21,7 @@ def scrapping_hh(soup):
         desc = desc_item.text if desc_item is not None else ""
 
         if "django" in (title + desc).lower() or "flask" in (title + desc).lower():
-            salary_elem = item.find("span", class_="bloko-currency-value")
+            salary_elem = item.find('span',attrs={"data-qa":'vacancy-serp__vacancy-compensation'})
             if salary_elem is not None and salary_elem.text.strip():
                 salary = salary_elem.text.replace("\u202f", "")
             else:
